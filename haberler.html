@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Haberler - RizesporHaber</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="FOTOGRAFLAR/logo.jpg" alt="RizesporHaber Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1><span class="green">Rize</span><span class="blue">Spor</span><span class="green">Haber</span></h1>
+                        <p>Rizespor'un Güncel Haber Kaynağı</p>
+                    </div>
+                </div>
+                    <div class="header-actions">
+                        <div class="social-media">
+                            <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <button class="newsletter-btn">Haber Bülteni</button>
+                    </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="Anasayfa.html">Anasayfa</a></li>
+                <li><a href="haberler.html" class="active">Haberler</a></li>
+                <li class="dropdown">
+                    <a href="çaykurrize.html">Takım & Oyuncu Profilleri</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="oyuncu-listesi.html">Oyuncu Listesi</a></li>
+                        <li><a href="oyuncu-istatistikleri.html">Oyuncu İstatistikleri</a></li>
+                    </ul>
+                </li>
+                <li><a href="mac-takvimi.html">Maç Takvimi/Sonuçlar</a></li>
+                <li><a href="galeri.html">Foto Galeri/Video</a></li>
+                <li><a href="iletisim.html">İletişim</a></li>
+            </ul>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Haberler Bölümü -->
+    <section class="main-content">
+        <div class="container">
+            <div class="news-section">
+                <div class="news-header">
+                    <h2 class="news-title">HABERLER</h2>
+                    <a href="#" class="all-news-link">+ Tüm Haberler</a>
+                </div>
+                
+                <div class="news-grid">
+                    <!-- Büyük Haber Kartı -->
+                    <div class="news-card featured-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/gol sevinci.webp" alt="Rizespor Taraftarları">
+                            <div class="card-overlay">
+                                <div class="card-info">
+                                    <span class="card-continue">Devamı</span>
+                                    <span class="card-time">Bugün</span>
+                                    <span class="card-hour">00:00</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Rizespor Taraftarları Büyük Sevinci Yaşıyor!</h3>
+                            <p class="card-description">Rizespor taraftarları takımlarının başarısını kutlarken büyük bir coşku yaşıyor. Bu sezon gösterdikleri performansla tüm dikkatleri üzerlerine çeken takım, taraftarlarının desteğiyle daha da güçleniyor.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Orta Boy Haber Kartları -->
+                    <div class="news-card medium-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/takım.jpg" alt="Rizespor Takımı">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Rizespor Takımı Yeni Sezona Hazırlanıyor</h3>
+                            <p class="card-description">Rizespor futbol takımı yeni sezon hazırlıklarını sürdürüyor. Antrenmanlarda gösterilen performans umut verici.</p>
+                            <div class="card-meta">
+                                <span class="card-date">Dün 16:12</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card medium-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/şamğiyonluk kupası.jpg" alt="Şampiyonluk">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Rizespor Başarılarını Sürdürüyor</h3>
+                            <p class="card-description">Rizespor geçmiş başarılarını yeni sezonda da sürdürmeye kararlı. Kulüp yönetimi hedeflerini açıkladı.</p>
+                            <div class="card-meta">
+                                <span class="card-date">Dün 16:19</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Küçük Haber Kartları -->
+                    <div class="news-card small-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/foto.jpg" alt="Rizespor Oyuncusu">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Rizespor Oyuncuları Antrenmanda</h3>
+                            <p class="card-description">Rizespor oyuncuları yoğun antrenman programına devam ediyor.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card small-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/logo.jpg" alt="Rizespor Logo">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">KAMUOYUNA DUYURU</h3>
+                            <p class="card-description">Rizespor kulübünden önemli duyuru.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card small-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/rize-galatasay.jpg" alt="Rize Galatasaray">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Rize vs Galatasaray Maçı</h3>
+                            <p class="card-description">Rizespor'un Galatasaray ile oynadığı büyük maç.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card small-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/takım.jpg" alt="Rizespor Voleybol">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Rizespor Voleybol Takımı Şampiyon</h3>
+                            <p class="card-description">Rizespor voleybol takımı büyük başarı elde etti.</p>
+                            <div class="card-meta">
+                                <span class="card-date">5.04.2025 17:36</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ek Haber Kartları -->
+                    <div class="news-card medium-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/gol sevinci.webp" alt="Rizespor Maçı">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Rizespor Son Maçta Büyük Zafer</h3>
+                            <p class="card-description">Rizespor son maçında rakiplerini 3-1 mağlup etti. Takımın gösterdiği performans taraftarları coşturdu.</p>
+                            <div class="card-meta">
+                                <span class="card-date">2 gün önce 14:30</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card small-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/şamğiyonluk kupası.jpg" alt="Kupa">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Kulüp Başkanından Açıklama</h3>
+                            <p class="card-description">Rizespor kulüp başkanı sezon hedeflerini açıkladı.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card small-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/foto.jpg" alt="Transfer">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Transfer Dönemi Başladı</h3>
+                            <p class="card-description">Rizespor transfer döneminde hedeflerini belirledi.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="news-card small-card">
+                        <div class="card-image">
+                            <img src="FOTOGRAFLAR/rize-galatasay.jpg" alt="Stadyum">
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Stadyum Yenileme Çalışmaları</h3>
+                            <p class="card-description">Rizespor stadyumunda yenileme çalışmaları devam ediyor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsorlar Bölümü -->
+    <section class="sponsors-section">
+        <div class="container">
+            
+            <div class="sponsors-carousel">
+                <div class="sponsors-track">
+                    <div class="sponsor-card">
+                        <a href="https://kartallar.com.tr/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/kartallar holding.jpg" alt="Kartallar Holding">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.rizefederasyon.com/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/ridef.jpg" alt="Ridef">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.instagram.com/433rizespor/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/433.jpg" alt="433">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://cayelimenu.com.tr/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/çayelikonagı.jpg" alt="Çayeli Konağı">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.instagram.com/kalkanderevakfi/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/kalkandere kültür derneği.jpeg" alt="Kalkandere Kültür Derneği">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="sponsor-nav prev-sponsor">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="sponsor-nav next-sponsor">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="sponsors-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <ul class="footer-links">
+                        <li><a href="Anasayfa.html"><i class="fas fa-chevron-right"></i> Anasayfa</a></li>
+                        <li><a href="haberler.html"><i class="fas fa-chevron-right"></i> Haberler</a></li>
+                        <li><a href="çaykurrize.html"><i class="fas fa-chevron-right"></i> Çaykur Rizespor</a></li>
+                        <li><a href="mac-takvimi.html"><i class="fas fa-chevron-right"></i> Maç Takvimi/Sonuçlar</a></li>
+                        <li><a href="galeri.html"><i class="fas fa-chevron-right"></i> Foto Galeri/Video</a></li>
+                        <li><a href="iletisim.html"><i class="fas fa-chevron-right"></i> İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-logo">
+                        <img src="FOTOGRAFLAR/logo.jpg" alt="RizeSpor Haber Logo">
+                    </div>
+                    <div class="footer-copyright">
+                        <p>Copyright © RizeSpor Haber - Tüm Hakları Saklıdır</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
