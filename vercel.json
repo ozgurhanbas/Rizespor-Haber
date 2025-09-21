@@ -1,1 +1,12 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/adminanasayfa", "destination": "/adminanasayfa.html" },
+    { "source": "/haberler", "destination": "/haberler.html" },
+    { "source": "/haberleradmin", "destination": "/haberleradmin.html" },
+    { "source": "/iletisim", "destination": "/iletisim.html" },
+    { "source": "/caykurrize", "destination": "/caykurrize.html" }
+  ]
+}
 
