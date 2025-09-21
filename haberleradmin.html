@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haber Yönetimi - RizesporHaber</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Admin panel özel stilleri */
+        .admin-header {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .admin-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .admin-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .admin-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .admin-btn:hover {
+            background: #2980b9;
+        }
+        
+        .admin-btn.logout {
+            background: #e74c3c;
+        }
+        
+        .admin-btn.logout:hover {
+            background: #c0392b;
+        }
+        
+        .admin-content {
+            background: #f8f9fa;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .admin-section {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .admin-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        
+        .news-addition {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .news-addition h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+        .news-addition input, .news-addition textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .media-buttons {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+        
+        .btn-primary {
+            background: #1C5AA6;
+            color: white;
+            width: 100%;
+            justify-content: center;
+            font-size: 16px;
+            padding: 12px;
+        }
+        
+        .btn-primary:hover {
+            background: #2E7CE8;
+        }
+        
+        .media-preview {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .media-preview img,
+        .media-preview video {
+            max-width: 100%;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .media-preview .remove-media {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .media-preview .remove-media:hover {
+            background: #c82333;
+        }
+        
+        .card-video {
+            width: 100%;
+            height: 300px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .card-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .existing-news {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .existing-news h2 {
+            margin-bottom: 16px;
+            font-size: 20px;
+            color: #333;
+        }
+        #newsList {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        /* Haber kartları için haberler.html ile aynı tasarım */
+        .news-card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .news-card .card-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .news-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+        
+        .news-card .card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .news-card:hover .card-overlay {
+            opacity: 1;
+        }
+        
+        .news-card .card-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .news-card .card-content {
+            padding: 20px;
+        }
+        
+        .news-card .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+         .news-card .card-description {
+             color: #666;
+             line-height: 1.6;
+             margin-bottom: 15px;
+             white-space: pre-wrap;
+             word-wrap: break-word;
+             transition: all 0.3s ease;
+             display: block;
+         }
+        
+        .news-card .card-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .news-card .card-date {
+            color: #999;
+            font-size: 12px;
+        }
+        
+        /* Kart boyutu */
+        .news-card.medium-card {
+            width: 100%;
+        }
+        
+        /* Silme ve düzenleme butonları */
+        .delete-btn, .edit-btn {
+            position: absolute;
+            top: 10px;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+        
+        .delete-btn {
+            right: 10px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+        }
+        
+        .delete-btn:hover {
+            background: rgba(255, 0, 0, 1);
+        }
+        
+        .edit-btn {
+            right: 50px;
+            background: rgba(0, 123, 255, 0.8);
+            color: white;
+        }
+        
+        .edit-btn:hover {
+            background: rgba(0, 123, 255, 1);
+        }
+        
+        .news-card {
+            position: relative;
+        }
+        
+        /* Düzenleme formu */
+        .edit-form {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        
+        .edit-form-content {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .edit-form h3 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .edit-form input,
+        .edit-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .edit-form textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .edit-form-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+        }
+        
+        .edit-form-buttons button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .edit-save-btn {
+            background: #28a745;
+            color: white;
+        }
+        
+        .edit-save-btn:hover {
+            background: #218838;
+        }
+        
+        .edit-cancel-btn {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .edit-cancel-btn:hover {
+            background: #5a6268;
+        }
+        
+        .read-more-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .read-more-btn:hover {
+            background: #0056b3;
+        }
+        
+        .card-description {
+            position: relative;
+        }
+        
+         .card-description.truncated {
+             max-height: 80px;
+             overflow: hidden;
+             position: relative;
+         }
+         
+         .card-description.expanded {
+             max-height: none !important;
+             overflow: visible !important;
+             height: auto !important;
+             -webkit-line-clamp: none !important;
+             display: block !important;
+             white-space: pre-wrap !important;
+             word-wrap: break-word !important;
+         }
+         
+         .card-description.expanded::after {
+             display: none !important;
+         }
+         
+        .card-description.truncated::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(transparent, white);
+        }
+        
+        /* Admin navigasyon stilleri */
+        .admin-nav {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .admin-nav-btn {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .admin-nav-btn:hover {
+            background: #2980b9;
+        }
+        
+        .admin-nav-btn i {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Header -->
+    <header class="admin-header">
+        <div class="container">
+            <h1 class="admin-title">
+                <i class="fas fa-edit"></i>
+                Haber Yönetimi
+            </h1>
+            <div class="admin-actions">
+                <a href="adminanasayfa.html" class="admin-btn">
+                    <i class="fas fa-home"></i>
+                    Admin Anasayfa
+                </a>
+                <a href="#" class="admin-btn logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Çıkış Yap
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-content">
+        <div class="container">
+            <!-- News Addition Form -->
+            <section class="news-addition">
+                <h2><i class="fas fa-plus"></i> Haber Ekle</h2>
+                <input type="text" id="newsTitle" placeholder="Haber Başlığı">
+                <textarea id="newsContent" placeholder="Haber İçeriği"></textarea>
+                
+                <div class="media-buttons">
+                    <button type="button" onclick="document.getElementById('imageInput').click()" class="btn btn-secondary">
+                        <i class="fas fa-image"></i> Fotoğraf Ekle
+                    </button>
+                    <button type="button" onclick="document.getElementById('videoInput').click()" class="btn btn-secondary">
+                        <i class="fas fa-video"></i> Video Ekle
+                    </button>
+                </div>
+                <input type="file" id="imageInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
+                <input type="file" id="videoInput" accept="video/*" style="display: none;" onchange="handleVideoUpload(event)">
+                
+                <div id="mediaPreview" class="media-preview"></div>
+                
+                 <button onclick="addNews()" class="btn btn-primary">
+                     <i class="fas fa-plus"></i> Haber Ekle
+                 </button>
+            </section>
+
+            <!-- Display Existing News -->
+            <section class="admin-section">
+                <h2><i class="fas fa-newspaper"></i> Mevcut Haberler</h2>
+                <div id="newsList">
+                    <!-- Existing news will be dynamically inserted here -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <ul class="footer-links">
+                        <li><a href="adminanasayfa.html"><i class="fas fa-chevron-right"></i> Admin Anasayfa</a></li>
+                        <li><a href="haberleradmin.html"><i class="fas fa-chevron-right"></i> Admin Haber Yönetimi</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-copyright">
+                        <p>Copyright © RizeSpor Haber Admin Panel - Tüm Hakları Saklıdır</p>
+                    </div>
+                    <div class="footer-logo">
+                        <img src="FOTOGRAFLAR/logo.jpg" alt="RizeSpor Haber Logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global değişkenler
+        let selectedImage = null;
+        let selectedVideo = null;
+
+        function addNews() {
+            const title = document.getElementById('newsTitle').value;
+            const content = document.getElementById('newsContent').value;
+            if (title && content) {
+                // Yeni haber objesi oluştur
+                const now = new Date();
+                const formattedDate = now.toLocaleDateString('tr-TR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                const formattedTime = now.toLocaleTimeString('tr-TR', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                const newNews = {
+                    id: Date.now(), // Benzersiz ID
+                    title: title,
+                    content: content,
+                    image: selectedImage,
+                    video: selectedVideo,
+                    date: `${formattedDate} ${formattedTime}`,
+                    createdAt: new Date().toISOString()
+                };
+                
+                // localStorage'dan mevcut haberleri al
+                let savedNews = JSON.parse(localStorage.getItem('adminNews') || '[]');
+                
+                // Yeni haberi en başa ekle
+                savedNews.unshift(newNews);
+                
+                // localStorage'a kaydet
+                localStorage.setItem('adminNews', JSON.stringify(savedNews));
+                
+                // Sayfayı yeniden yükle
+                loadAllNews();
+                
+                alert('Haber başarıyla eklendi!');
+                
+                // Form alanlarını temizle
+                document.getElementById('newsTitle').value = '';
+                document.getElementById('newsContent').value = '';
+                clearMedia();
+            } else {
+                alert('Lütfen tüm alanları doldurun.');
+            }
+        }
+
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedImage = e.target.result;
+                    selectedVideo = null; // Video seçilirse resmi temizle
+                    updateMediaPreview();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleVideoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    selectedVideo = e.target.result;
+                    selectedImage = null; // Resim seçilirse videoyu temizle
+                    updateMediaPreview();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function updateMediaPreview() {
+            const preview = document.getElementById('mediaPreview');
+            preview.innerHTML = '';
+            
+            if (selectedImage) {
+                preview.innerHTML = `
+                    <img src="${selectedImage}" alt="Seçilen Resim">
+                    <br>
+                    <button class="remove-media" onclick="clearMedia()">Resmi Kaldır</button>
+                `;
+            } else if (selectedVideo) {
+                preview.innerHTML = `
+                    <video controls>
+                        <source src="${selectedVideo}" type="video/mp4">
+                        Tarayıcınız video oynatmayı desteklemiyor.
+                    </video>
+                    <br>
+                    <button class="remove-media" onclick="clearMedia()">Videoyu Kaldır</button>
+                `;
+            }
+        }
+
+         function clearMedia() {
+             selectedImage = null;
+             selectedVideo = null;
+             document.getElementById('imageInput').value = '';
+             document.getElementById('videoInput').value = '';
+             document.getElementById('mediaPreview').innerHTML = '';
+         }
+
+
+        // Çıkış yapma fonksiyonu
+        function logout() {
+            if (confirm('Çıkış yapmak istediğinizden emin misiniz?')) {
+                // Admin giriş sayfasına yönlendir
+                window.location.href = 'admin.html';
+            }
+        }
+
+        // Sayfa yüklendiğinde tüm haberleri yükle
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllNews();
+        });
+
+        // Tarih formatını düzenleyen fonksiyon
+        function formatNewsDate(news) {
+            // Eğer tarih zaten tam format ise (gün.ay.yıl saat:dakika), olduğu gibi döndür
+            if (news.date && news.date.includes('.')) {
+                return news.date;
+            }
+            
+            // Eğer sadece saat formatı ise (HH:MM), bugünün tarihini ekle
+            if (news.date && news.date.match(/^\d{2}:\d{2}$/)) {
+                const now = new Date();
+                const formattedDate = now.toLocaleDateString('tr-TR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                return `${formattedDate} ${news.date}`;
+            }
+            
+            // Eğer createdAt varsa, onu kullan
+            if (news.createdAt) {
+                const date = new Date(news.createdAt);
+                const formattedDate = date.toLocaleDateString('tr-TR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                const formattedTime = date.toLocaleTimeString('tr-TR', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                return `${formattedDate} ${formattedTime}`;
+            }
+            
+            // Fallback: bugünün tarihi
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('tr-TR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            const formattedTime = now.toLocaleTimeString('tr-TR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            return `${formattedDate} ${formattedTime}`;
+        }
+
+        function loadAllNews() {
+            // Önce localStorage'dan admin haberlerini yükle
+            loadAdminNews();
+            
+            // Sonra haberler.html'den haberleri ekle
+            loadNewsFromHabers();
+        }
+
+        function loadAdminNews() {
+            const savedNews = JSON.parse(localStorage.getItem('adminNews') || '[]');
+            const newsList = document.getElementById('newsList');
+            
+            // Önce newsList'i temizle
+            newsList.innerHTML = '';
+            
+            if (savedNews.length > 0) {
+                // Haberleri zaman bazlı sırala (en yeni en üstte)
+                const sortedNews = savedNews.sort((a, b) => {
+                    const dateA = new Date(a.createdAt || a.updatedAt || Date.now());
+                    const dateB = new Date(b.createdAt || b.updatedAt || Date.now());
+                    return dateB - dateA; // En yeni en üstte
+                });
+                
+                // Sıralanmış haberleri ekle
+                sortedNews.forEach(news => {
+                    const newsCard = document.createElement('div');
+                    newsCard.className = 'news-card medium-card';
+                    
+                    let mediaContent = '';
+                    if (news.image) {
+                        mediaContent = `
+                            <div class="card-image">
+                                <img src="${news.image}" alt="${news.title}">
+                            </div>
+                        `;
+                    } else if (news.video) {
+                        mediaContent = `
+                            <div class="card-video">
+                                <video controls>
+                                    <source src="${news.video}" type="video/mp4">
+                                    Tarayıcınız video oynatmayı desteklemiyor.
+                                </video>
+                            </div>
+                        `;
+                    }
+                    
+                    // İçerik uzunluğunu kontrol et (400 karakterden fazla ise kısalt)
+                    const isLongContent = news.content.length > 400;
+                    const displayContent = isLongContent ? news.content.substring(0, 400) + '...' : news.content;
+                    const truncatedClass = isLongContent ? 'truncated' : '';
+                    
+                    newsCard.innerHTML = `
+                        <button class="delete-btn" onclick="deleteNews(${news.id})" title="Haberi Sil">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="edit-btn" onclick="editNews(${news.id})" title="Haberi Düzenle">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        ${mediaContent}
+                        <div class="card-content">
+                            <h3 class="card-title">${news.title}</h3>
+                            <p class="card-description ${truncatedClass}" id="content-${news.id}">${displayContent}</p>
+                            ${isLongContent ? `<button class="read-more-btn" onclick="toggleReadMore(${news.id}, \`${news.content.replace(/`/g, '\\`')}\`)">Tümünü Göster</button>` : ''}
+                            <div class="card-meta">
+                                <span class="card-date">Admin - ${formatNewsDate(news)}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Admin haberlerini ekle
+                    newsList.appendChild(newsCard);
+                });
+            }
+        }
+
+        function deleteNews(newsId) {
+            if (confirm('Bu haberi silmek istediğinizden emin misiniz?')) {
+                // localStorage'dan mevcut haberleri al
+                let savedNews = JSON.parse(localStorage.getItem('adminNews') || '[]');
+                
+                // Silinecek haberi filtrele
+                savedNews = savedNews.filter(news => news.id !== newsId);
+                
+                // Güncellenmiş listeyi localStorage'a kaydet
+                localStorage.setItem('adminNews', JSON.stringify(savedNews));
+                
+                // Sayfayı yeniden yükle
+                loadAllNews();
+                
+                alert('Haber başarıyla silindi!');
+            }
+        }
+
+        function loadNewsFromHabers() {
+            // Artık statik haber yok, sadece admin haberleri gösterilecek
+            // Bu fonksiyon boş bırakıldı
+        }
+
+        // Düzenleme fonksiyonları
+        function editNews(newsId) {
+            const savedNews = JSON.parse(localStorage.getItem('adminNews') || '[]');
+            const newsToEdit = savedNews.find(news => news.id === newsId);
+            
+            if (newsToEdit) {
+                showEditForm(newsToEdit);
+            }
+        }
+
+        function showEditForm(news) {
+            // Düzenleme formunu oluştur
+            const editForm = document.createElement('div');
+            editForm.className = 'edit-form';
+            editForm.id = 'editForm';
+            editForm.innerHTML = `
+                <div class="edit-form-content">
+                    <h3>Haberi Düzenle</h3>
+                    <input type="text" id="editTitle" value="${news.title}" placeholder="Haber Başlığı">
+                    <textarea id="editContent" placeholder="Haber İçeriği">${news.content}</textarea>
+                    
+                    <div class="media-buttons">
+                        <button type="button" onclick="document.getElementById('editImageInput').click()" class="btn btn-secondary">
+                            <i class="fas fa-image"></i> Fotoğraf Değiştir
+                        </button>
+                        <button type="button" onclick="document.getElementById('editVideoInput').click()" class="btn btn-secondary">
+                            <i class="fas fa-video"></i> Video Değiştir
+                        </button>
+                    </div>
+                    <input type="file" id="editImageInput" accept="image/*" style="display: none;" onchange="handleEditImageUpload(event)">
+                    <input type="file" id="editVideoInput" accept="video/*" style="display: none;" onchange="handleEditVideoUpload(event)">
+                    
+                    <div id="editMediaPreview" class="media-preview">
+                        ${news.image ? `<img src="${news.image}" alt="Mevcut Resim" style="max-width: 300px; max-height: 200px; object-fit: cover; border-radius: 8px;">` : ''}
+                        ${news.video ? `<video controls style="max-width: 300px; max-height: 200px; border-radius: 8px;"><source src="${news.video}" type="video/mp4"></video>` : ''}
+                    </div>
+                    
+                    <div class="edit-form-buttons">
+                        <button class="edit-cancel-btn" onclick="closeEditForm()">İptal</button>
+                        <button class="edit-save-btn" onclick="saveEditNews(${news.id})">Kaydet</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(editForm);
+        }
+
+        function closeEditForm() {
+            const editForm = document.getElementById('editForm');
+            if (editForm) {
+                editForm.remove();
+            }
+        }
+
+        function handleEditImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('editMediaPreview').innerHTML = `
+                        <img src="${e.target.result}" alt="Yeni Resim" style="max-width: 300px; max-height: 200px; object-fit: cover; border-radius: 8px;">
+                        <br>
+                        <button class="remove-media" onclick="clearEditMedia()">Resmi Kaldır</button>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function handleEditVideoUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('editMediaPreview').innerHTML = `
+                        <video controls style="max-width: 300px; max-height: 200px; border-radius: 8px;">
+                            <source src="${e.target.result}" type="video/mp4">
+                        </video>
+                        <br>
+                        <button class="remove-media" onclick="clearEditMedia()">Videoyu Kaldır</button>
+                    `;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function clearEditMedia() {
+            document.getElementById('editMediaPreview').innerHTML = '';
+            document.getElementById('editImageInput').value = '';
+            document.getElementById('editVideoInput').value = '';
+        }
+
+         function toggleReadMore(newsId, fullContent) {
+             const contentElement = document.getElementById(`content-${newsId}`);
+             const button = contentElement.nextElementSibling;
+             
+             console.log('Toggle clicked for newsId:', newsId);
+             console.log('Content element:', contentElement);
+             console.log('Button element:', button);
+             console.log('Current classes:', contentElement.className);
+             
+             if (contentElement.classList.contains('truncated')) {
+                 // Tümünü göster
+                 console.log('Expanding content...');
+                 contentElement.textContent = fullContent;
+                 contentElement.style.maxHeight = 'none';
+                 contentElement.style.overflow = 'visible';
+                 contentElement.style.height = 'auto';
+                 contentElement.style.display = 'block';
+                 contentElement.style.webkitLineClamp = 'none';
+                 contentElement.classList.remove('truncated');
+                 contentElement.classList.add('expanded');
+                 if (button) button.textContent = 'Daha Az Göster';
+                 console.log('After expansion classes:', contentElement.className);
+                 console.log('Content after expansion:', contentElement.textContent);
+                 console.log('Styles after expansion:', {
+                     maxHeight: contentElement.style.maxHeight,
+                     overflow: contentElement.style.overflow,
+                     height: contentElement.style.height,
+                     display: contentElement.style.display
+                 });
+             } else {
+                 // Kısalt
+                 console.log('Truncating content...');
+                 const shortContent = fullContent.substring(0, 400) + '...';
+                 contentElement.textContent = shortContent;
+                 contentElement.style.maxHeight = '80px';
+                 contentElement.style.overflow = 'hidden';
+                 contentElement.style.height = '80px';
+                 contentElement.style.display = 'block';
+                 contentElement.classList.remove('expanded');
+                 contentElement.classList.add('truncated');
+                 if (button) button.textContent = 'Tümünü Göster';
+                 console.log('After truncation classes:', contentElement.className);
+                 console.log('Content after truncation:', contentElement.textContent);
+                 console.log('Styles after truncation:', {
+                     maxHeight: contentElement.style.maxHeight,
+                     overflow: contentElement.style.overflow,
+                     height: contentElement.style.height,
+                     display: contentElement.style.display
+                 });
+             }
+         }
+
+        function saveEditNews(newsId) {
+            const title = document.getElementById('editTitle').value;
+            const content = document.getElementById('editContent').value;
+            
+            if (title && content) {
+                const savedNews = JSON.parse(localStorage.getItem('adminNews') || '[]');
+                const newsIndex = savedNews.findIndex(news => news.id === newsId);
+                
+                if (newsIndex !== -1) {
+                    // Mevcut medya bilgilerini al
+                    const currentNews = savedNews[newsIndex];
+                    let newImage = currentNews.image;
+                    let newVideo = currentNews.video;
+                    
+                    // Yeni medya varsa güncelle
+                    const mediaPreview = document.getElementById('editMediaPreview');
+                    const img = mediaPreview.querySelector('img');
+                    const video = mediaPreview.querySelector('video');
+                    
+                    if (img && img.src.startsWith('data:')) {
+                        newImage = img.src;
+                        newVideo = null;
+                    } else if (video && video.querySelector('source').src.startsWith('data:')) {
+                        newVideo = video.querySelector('source').src;
+                        newImage = null;
+                    }
+                    
+                    // Haberi güncelle
+                    const now = new Date();
+                    const formattedDate = now.toLocaleDateString('tr-TR', {
+                        day: '2-digit',
+                        month: '2-digit',
+                        year: 'numeric'
+                    });
+                    const formattedTime = now.toLocaleTimeString('tr-TR', {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    savedNews[newsIndex] = {
+                        ...currentNews,
+                        title: title,
+                        content: content,
+                        image: newImage,
+                        video: newVideo,
+                        date: `${formattedDate} ${formattedTime}`,
+                        updatedAt: new Date().toISOString()
+                    };
+                    
+                    // localStorage'a kaydet
+                    localStorage.setItem('adminNews', JSON.stringify(savedNews));
+                    
+                    // Sayfayı yenile
+                    loadAllNews();
+                    
+                    // Formu kapat
+                    closeEditForm();
+                    
+                    alert('Haber başarıyla güncellendi!');
+                }
+            } else {
+                alert('Lütfen tüm alanları doldurun.');
+            }
+        }
+    </script>
+</body>
+</html>

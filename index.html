@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>RizesporHaber - Rizespor Güncel Haberleri</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Tümünü Göster özelliği için CSS */
+        .read-more-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .read-more-btn:hover {
+            background: #0056b3;
+        }
+        
+        .card-description {
+            position: relative;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .card-description.truncated {
+            max-height: 80px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-description.truncated::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(transparent, white);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="FOTOGRAFLAR/logo.jpg" alt="RizesporHaber Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1><span class="green">Rize</span><span class="blue">Spor</span><span class="green">Haber</span></h1>
+                        <p>Rizespor'un Güncel Haber Kaynağı</p>
+                    </div>
+                </div>
+                    <div class="header-actions">
+                        <nav class="header-nav">
+                            <a href="index.html" class="header-nav-link active">Anasayfa</a>
+                            <a href="haberler.html" class="header-nav-link">Haberler</a>
+                            <a href="caykurrize.html" class="header-nav-link">Çaykur Rizespor</a>
+                            <a href="iletisim.html" class="header-nav-link">İletişim</a>
+                        </nav>
+                    </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Rizespor Banner Section -->
+    <section class="rizespor-banner">
+        <div class="banner-full-width">
+            <div class="banner-horizontal" id="photoContainer">
+                <!-- Fotoğraflar buraya dinamik olarak yüklenecek -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Haberler Bölümü -->
+    <section class="main-content">
+        <div class="container">
+            <div class="news-section">
+                <div class="news-header">
+                    <h2 class="news-title">HABERLER</h2>
+                    <a href="haberler.html" class="all-news-link">+ Tüm Haberler</a>
+                </div>
+                
+                
+                <div class="news-grid" id="homeNewsGrid">
+                    <!-- Haberler haberler.html'den dinamik olarak yüklenecek -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsorlar Bölümü -->
+    <section class="sponsors-section">
+        <div class="container">
+            
+            <div class="sponsors-carousel">
+                <div class="sponsors-track">
+                    <div class="sponsor-card">
+                        <a href="https://kartallar.com.tr/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/kartallar holding.jpg" alt="Kartallar Holding">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.rizefederasyon.com/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/ridef.jpg" alt="Ridef">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.instagram.com/433rizespor/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/433.jpg" alt="433">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://cayelimenu.com.tr/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/çayelikonagı.jpg" alt="Çayeli Konağı">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.instagram.com/kalkanderevakfi/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/kalkandere kültür derneği.jpeg" alt="Kalkandere Kültür Derneği">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="sponsor-nav prev-sponsor">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="sponsor-nav next-sponsor">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="sponsors-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Üst bölüm - Logo ve Menüler -->
+                <div class="footer-top">
+                    <!-- Sol - Logo -->
+                    <div class="footer-logo">
+                        <img src="FOTOGRAFLAR/logo.jpg" alt="RizeSpor Haber Logo">
+                    </div>
+                    
+                    <!-- Sağ - Menüler -->
+                    <div class="footer-nav">
+                        <a href="index.html">Anasayfa</a>
+                        <a href="haberler.html">Haberler</a>
+                        <a href="caykurrize.html">Çaykur Rizespor</a>
+                        <a href="iletisim.html">İletişim</a>
+                    </div>
+                </div>
+                
+                <!-- Alt bölüm - Sosyal Medya ve Copyright -->
+                <div class="footer-bottom">
+                    <!-- Sol - Sosyal Medya -->
+                    <div class="footer-social">
+                        <a href="#" class="social-link" title="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    
+                    <!-- Sağ - Copyright -->
+                    <div class="footer-copyright">
+                        <p>&copy; 2024 RizeSpor Haber. Tüm hakları saklıdır.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Anasayfadaki haberleri haberler.html'den yükle
+        // Tarih formatını düzenleyen fonksiyon
+        function formatNewsDate(news) {
+            // Eğer tarih zaten tam format ise (gün.ay.yıl saat:dakika), olduğu gibi döndür
+            if (news.date && news.date.includes('.')) {
+                return news.date;
+            }
+            
+            // Eğer sadece saat formatı ise (HH:MM), bugünün tarihini ekle
+            if (news.date && news.date.match(/^\d{2}:\d{2}$/)) {
+                const now = new Date();
+                const formattedDate = now.toLocaleDateString('tr-TR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                return `${formattedDate} ${news.date}`;
+            }
+            
+            // Eğer createdAt varsa, onu kullan
+            if (news.createdAt) {
+                const date = new Date(news.createdAt);
+                const formattedDate = date.toLocaleDateString('tr-TR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                const formattedTime = date.toLocaleTimeString('tr-TR', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                return `${formattedDate} ${formattedTime}`;
+            }
+            
+            // Fallback: bugünün tarihi
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('tr-TR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            const formattedTime = now.toLocaleTimeString('tr-TR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            return `${formattedDate} ${formattedTime}`;
+        }
+
+        function loadHomeNews() {
+            // localStorage'dan admin haberlerini al
+            const savedNews = JSON.parse(localStorage.getItem('adminNews') || '[]');
+            const homeNewsGrid = document.getElementById('homeNewsGrid');
+            
+            if (savedNews.length > 0 && homeNewsGrid) {
+                // Haberleri zaman bazlı sırala (en yeni en üstte)
+                const sortedNews = savedNews.sort((a, b) => {
+                    const dateA = new Date(a.createdAt || a.updatedAt || Date.now());
+                    const dateB = new Date(b.createdAt || b.updatedAt || Date.now());
+                    return dateB - dateA; // En yeni en üstte
+                });
+                
+                // Admin haberlerini anasayfaya ekle (en fazla 6 haber)
+                const newsToShow = sortedNews.slice(0, 6);
+                
+                newsToShow.forEach((news, index) => {
+                    const newsCard = document.createElement('div');
+                    
+                    // İlk haber büyük kart, diğerleri orta boy
+                    if (index === 0) {
+                        newsCard.className = 'news-card featured-card';
+                    } else if (index < 3) {
+                        newsCard.className = 'news-card medium-card';
+                    } else {
+                        newsCard.className = 'news-card small-card';
+                    }
+                    
+                    let mediaContent = '';
+                    if (news.image) {
+                        mediaContent = `
+                            <div class="card-image">
+                                <img src="${news.image}" alt="${news.title}">
+                            </div>
+                        `;
+                    } else if (news.video) {
+                        mediaContent = `
+                            <div class="card-video">
+                                <video controls>
+                                    <source src="${news.video}" type="video/mp4">
+                                    Tarayıcınız video oynatmayı desteklemiyor.
+                                </video>
+                            </div>
+                        `;
+                    }
+                    
+                    // İçerik uzunluğunu kontrol et (400 karakterden fazla ise kısalt)
+                    const isLongContent = news.content.length > 400;
+                    const displayContent = isLongContent ? news.content.substring(0, 400) + '...' : news.content;
+                    const truncatedClass = isLongContent ? 'truncated' : '';
+                    
+                    newsCard.innerHTML = `
+                        ${mediaContent}
+                        <div class="card-content">
+                            <h3 class="card-title">${news.title}</h3>
+                            <p class="card-description ${truncatedClass}" id="home-content-${news.id}">${displayContent}</p>
+                            ${isLongContent ? `<button class="read-more-btn" onclick="goToNewsPage(${news.id})">Tümünü Göster</button>` : ''}
+                            ${index > 0 ? `<div class="card-meta"><span class="card-date">Admin - ${formatNewsDate(news)}</span></div>` : ''}
+                        </div>
+                    `;
+                    
+                    homeNewsGrid.appendChild(newsCard);
+                });
+            } else {
+                // Haber yoksa boş mesaj göster
+                homeNewsGrid.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: #f8f9fa; border-radius: 12px; border: 2px dashed #ddd;">
+                        <i class="fas fa-newspaper" style="font-size: 48px; color: #ccc; margin-bottom: 16px;"></i>
+                        <h3 style="color: #666; margin-bottom: 8px;">Henüz haber yok</h3>
+                        <p style="color: #999;">Admin panelinden haber ekleyebilirsiniz.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Haberler sayfasına yönlendirme fonksiyonu
+        function goToNewsPage(newsId) {
+            // Haberler sayfasına yönlendir
+            window.location.href = 'haberler.html';
+        }
+
+        // Fotoğrafları yükle
+        function loadHomepagePhotos() {
+            const photos = JSON.parse(localStorage.getItem('homepagePhotos') || '[]');
+            const photoContainer = document.getElementById('photoContainer');
+            
+            if (photos.length > 0) {
+                photoContainer.innerHTML = '';
+                photos.forEach((photo, index) => {
+                    const photoCard = document.createElement('div');
+                    photoCard.className = index === 0 ? 'photo-card photo-card-double' : 'photo-card';
+                    photoCard.innerHTML = `
+                        <img src="${photo.image}" alt="Fotoğraf" class="photo-img">
+                        <div class="photo-overlay">
+                            <span class="photo-subtitle">${photo.subtitle}</span>
+                        </div>
+                    `;
+                    photoContainer.appendChild(photoCard);
+                });
+            } else {
+                // Varsayılan fotoğrafları göster
+                photoContainer.innerHTML = `
+                    <div class="photo-card photo-card-double">
+                        <img src="FOTOGRAFLAR/takım.jpg" alt="Rizespor Takımı" class="photo-img">
+                        <div class="photo-overlay">
+                            <span class="photo-subtitle">Birlikte Güçlüyüz</span>
+                        </div>
+                    </div>
+                    <div class="photo-card">
+                        <img src="FOTOGRAFLAR/rize-galatasay.jpg" alt="Rize Galatasaray" class="photo-img">
+                        <div class="photo-overlay">
+                            <span class="photo-subtitle">Büyük Maç</span>
+                        </div>
+                    </div>
+                    <div class="photo-card">
+                        <img src="FOTOGRAFLAR/foto.jpg" alt="foto" class="photo-img">
+                        <div class="photo-overlay">
+                            <span class="photo-subtitle">Veda</span>
+                        </div>
+                    </div>
+                    <div class="photo-card">
+                        <img src="FOTOGRAFLAR/şamğiyonluk kupası.jpg" alt="Şampiyonluk Kupası" class="photo-img">
+                        <div class="photo-overlay">
+                            <span class="photo-subtitle">Başarılar</span>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Sayfa yüklendiğinde verileri yükle
+        document.addEventListener('DOMContentLoaded', function() {
+            loadHomeNews();
+            loadHomepagePhotos();
+        });
+    </script>
+</body>
+</html>

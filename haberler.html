@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>Haberler - RizesporHaber</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Haberler alt alta olsun */
+        .news-grid {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 20px !important;
+        }
+        
+        .news-card {
+            width: 100% !important;
+        }
+        
+        /* Tümünü Göster özelliği için CSS */
+        .read-more-btn {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .read-more-btn:hover {
+            background: #0056b3;
+        }
+        
+        .card-description {
+            position: relative;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .card-description.truncated {
+            max-height: 80px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .card-description.expanded {
+            max-height: none !important;
+            overflow: visible !important;
+            height: auto !important;
+            -webkit-line-clamp: none !important;
+            display: block !important;
+            white-space: pre-wrap !important;
+            word-wrap: break-word !important;
+        }
+        
+        .card-description.expanded::after {
+            display: none !important;
+        }
+        
+        .card-description.truncated::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: linear-gradient(transparent, white);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="FOTOGRAFLAR/logo.jpg" alt="RizesporHaber Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1><span class="green">Rize</span><span class="blue">Spor</span><span class="green">Haber</span></h1>
+                        <p>Rizespor'un Güncel Haber Kaynağı</p>
+                    </div>
+                </div>
+                    <div class="header-actions">
+                        <nav class="header-nav">
+                            <a href="index.html" class="header-nav-link">Anasayfa</a>
+                            <a href="haberler.html" class="header-nav-link active">Haberler</a>
+                            <a href="caykurrize.html" class="header-nav-link">Çaykur Rizespor</a>
+                            <a href="iletisim.html" class="header-nav-link">İletişim</a>
+                        </nav>
+                    </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Haberler Bölümü -->
+    <section class="main-content">
+        <div class="container">
+            <div class="news-section">
+                <div class="news-header">
+                    <h2 class="news-title">HABERLER</h2>
+                </div>
+                
+                <div class="news-grid">
+                    <!-- Admin haberleri buraya dinamik olarak eklenecek -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Sponsorlar Bölümü -->
+    <section class="sponsors-section">
+        <div class="container">
+            
+            <div class="sponsors-carousel">
+                <div class="sponsors-track">
+                    <div class="sponsor-card">
+                        <a href="https://kartallar.com.tr/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/kartallar holding.jpg" alt="Kartallar Holding">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.rizefederasyon.com/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/ridef.jpg" alt="Ridef">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.instagram.com/433rizespor/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/433.jpg" alt="433">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://cayelimenu.com.tr/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/çayelikonagı.jpg" alt="Çayeli Konağı">
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="sponsor-card">
+                        <a href="https://www.instagram.com/kalkanderevakfi/" target="_blank" class="sponsor-link">
+                            <div class="sponsor-logo">
+                                <img src="FOTOGRAFLAR/kalkandere kültür derneği.jpeg" alt="Kalkandere Kültür Derneği">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <button class="sponsor-nav prev-sponsor">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="sponsor-nav next-sponsor">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="sponsors-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Anasayfa</a></li>
+                        <li><a href="haberler.html"><i class="fas fa-chevron-right"></i> Haberler</a></li>
+                        <li><a href="caykurrize.html"><i class="fas fa-chevron-right"></i> Çaykur Rizespor</a></li>
+                        <li><a href="iletisim.html"><i class="fas fa-chevron-right"></i> İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <div class="social-media">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-logo">
+                        <img src="FOTOGRAFLAR/logo.jpg" alt="RizeSpor Haber Logo">
+                    </div>
+                    <div class="footer-copyright">
+                        <p>Copyright © RizeSpor Haber - Tüm Hakları Saklıdır</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Admin haberlerini haberleradmin.html'den çek
+        // Tarih formatını düzenleyen fonksiyon
+        function formatNewsDate(news) {
+            // Eğer tarih zaten tam format ise (gün.ay.yıl saat:dakika), olduğu gibi döndür
+            if (news.date && news.date.includes('.')) {
+                return news.date;
+            }
+            
+            // Eğer sadece saat formatı ise (HH:MM), bugünün tarihini ekle
+            if (news.date && news.date.match(/^\d{2}:\d{2}$/)) {
+                const now = new Date();
+                const formattedDate = now.toLocaleDateString('tr-TR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                return `${formattedDate} ${news.date}`;
+            }
+            
+            // Eğer createdAt varsa, onu kullan
+            if (news.createdAt) {
+                const date = new Date(news.createdAt);
+                const formattedDate = date.toLocaleDateString('tr-TR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                const formattedTime = date.toLocaleTimeString('tr-TR', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                return `${formattedDate} ${formattedTime}`;
+            }
+            
+            // Fallback: bugünün tarihi
+            const now = new Date();
+            const formattedDate = now.toLocaleDateString('tr-TR', {
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric'
+            });
+            const formattedTime = now.toLocaleTimeString('tr-TR', {
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            return `${formattedDate} ${formattedTime}`;
+        }
+
+        function loadAdminNews() {
+            // localStorage'dan admin haberlerini al
+            const savedNews = JSON.parse(localStorage.getItem('adminNews') || '[]');
+            const newsGrid = document.querySelector('.news-grid');
+            
+            if (savedNews.length > 0 && newsGrid) {
+                // Haberleri zaman bazlı sırala (en yeni en üstte)
+                const sortedNews = savedNews.sort((a, b) => {
+                    const dateA = new Date(a.createdAt || a.updatedAt || Date.now());
+                    const dateB = new Date(b.createdAt || b.updatedAt || Date.now());
+                    return dateB - dateA; // En yeni en üstte
+                });
+                
+                // Sıralanmış haberleri ekle
+                sortedNews.forEach(news => {
+                    const newsCard = document.createElement('div');
+                    newsCard.className = 'news-card medium-card';
+                    newsCard.setAttribute('data-admin', 'true');
+                    
+                    let mediaContent = '';
+                    if (news.image) {
+                        mediaContent = `
+                            <div class="card-image">
+                                <img src="${news.image}" alt="${news.title}">
+                            </div>
+                        `;
+                    } else if (news.video) {
+                        mediaContent = `
+                            <div class="card-video">
+                                <video controls>
+                                    <source src="${news.video}" type="video/mp4">
+                                    Tarayıcınız video oynatmayı desteklemiyor.
+                                </video>
+                            </div>
+                        `;
+                    }
+                    
+                    // İçerik uzunluğunu kontrol et (400 karakterden fazla ise kısalt)
+                    const isLongContent = news.content.length > 400;
+                    const displayContent = isLongContent ? news.content.substring(0, 400) + '...' : news.content;
+                    const truncatedClass = isLongContent ? 'truncated' : '';
+                    
+                    newsCard.innerHTML = `
+                        ${mediaContent}
+                        <div class="card-content">
+                            <h3 class="card-title">${news.title}</h3>
+                            <p class="card-description ${truncatedClass}" id="content-${news.id}">${displayContent}</p>
+                            ${isLongContent ? `<button class="read-more-btn" onclick="toggleReadMore(${news.id}, \`${news.content.replace(/`/g, '\\`')}\`)">Tümünü Göster</button>` : ''}
+                            <div class="card-meta">
+                                <span class="card-date">Admin - ${formatNewsDate(news)}</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Sıralanmış haberleri ekle
+                    newsGrid.appendChild(newsCard);
+                });
+            }
+        }
+
+        // Tümünü Göster fonksiyonu
+        function toggleReadMore(newsId, fullContent) {
+            const contentElement = document.getElementById(`content-${newsId}`);
+            const button = contentElement.nextElementSibling;
+            
+            console.log('Toggle clicked for newsId:', newsId);
+            console.log('Content element:', contentElement);
+            console.log('Button element:', button);
+            console.log('Current classes:', contentElement.className);
+            
+            if (contentElement.classList.contains('truncated')) {
+                // Tümünü göster
+                console.log('Expanding content...');
+                contentElement.textContent = fullContent;
+                contentElement.style.maxHeight = 'none';
+                contentElement.style.overflow = 'visible';
+                contentElement.style.height = 'auto';
+                contentElement.style.display = 'block';
+                contentElement.style.webkitLineClamp = 'none';
+                contentElement.classList.remove('truncated');
+                contentElement.classList.add('expanded');
+                if (button) button.textContent = 'Daha Az Göster';
+                console.log('After expansion classes:', contentElement.className);
+                console.log('Content after expansion:', contentElement.textContent);
+                console.log('Styles after expansion:', {
+                    maxHeight: contentElement.style.maxHeight,
+                    overflow: contentElement.style.overflow,
+                    height: contentElement.style.height,
+                    display: contentElement.style.display
+                });
+            } else {
+                // Kısalt
+                console.log('Truncating content...');
+                const shortContent = fullContent.substring(0, 400) + '...';
+                contentElement.textContent = shortContent;
+                contentElement.style.maxHeight = '80px';
+                contentElement.style.overflow = 'hidden';
+                contentElement.style.height = '80px';
+                contentElement.style.display = 'block';
+                contentElement.classList.remove('expanded');
+                contentElement.classList.add('truncated');
+                if (button) button.textContent = 'Tümünü Göster';
+                console.log('After truncation classes:', contentElement.className);
+                console.log('Content after truncation:', contentElement.textContent);
+                console.log('Styles after truncation:', {
+                    maxHeight: contentElement.style.maxHeight,
+                    overflow: contentElement.style.overflow,
+                    height: contentElement.style.height,
+                    display: contentElement.style.display
+                });
+            }
+        }
+
+        // Sayfa yüklendiğinde tüm haberleri yükle (admin haberleri + mevcut haberler)
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAllNews();
+        });
+
+        function loadAllNews() {
+            // Önce localStorage'dan admin haberlerini yükle
+            loadAdminNews();
+            
+            // Sonra mevcut haberleri yükle (zaten HTML'de var olanlar)
+            // Bu sayede admin haberleri en üstte, mevcut haberler altta olur
+        }
+    </script>
+</body>
+</html>

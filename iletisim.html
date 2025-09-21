@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>İletişim - RizesporHaber</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="FOTOGRAFLAR/logo.jpg" alt="RizesporHaber Logo" class="logo-image">
+                    <div class="logo-text">
+                        <h1><span class="green">Rize</span><span class="blue">Spor</span><span class="green">Haber</span></h1>
+                        <p>Rizespor'un Güncel Haber Kaynağı</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <nav class="header-nav">
+                        <a href="index.html" class="header-nav-link">Anasayfa</a>
+                        <a href="haberler.html" class="header-nav-link">Haberler</a>
+                        <a href="caykurrize.html" class="header-nav-link">Çaykur Rizespor</a>
+                        <a href="iletisim.html" class="header-nav-link active">İletişim</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <h2 class="section-title">İletişim</h2>
+            <div class="content-grid">
+                <!-- İletişim İçeriği -->
+                <div class="contact-info">
+                    <h3 class="sub-title">Bize Ulaşın</h3>
+                    <p>Adres: M.Cengiz Tes.Taşlıdere Mah.Sevgi Cad. 3, 53020 Merkez/RİZE, Türkiye</p>
+                    <p>Telefon: +90 464 2261901</p>
+                    <p>Faks: +90 464 2261911</p>
+                    <p>Email: info@rizesporhaber.com</p>
+                </div>
+                <div class="map" style="text-align:left; margin-left: 20px20;">
+                    <h3 class="sub-title">Konumumuz</h3>
+                    <div style="overflow:hidden;position:relative;width:100%;height:0;padding-bottom:56.25%;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3060.1234567890123!2d40.1234567890123!3d41.1234567890123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0:0x1234567890abcdef!2sRizespor!5e0!3m2!1str!2str!4v1234567890123" style="border:0;position:absolute;top:0;left:0;width:100%;height:100%;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <ul class="footer-links">
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Anasayfa</a></li>
+                        <li><a href="haberler.html"><i class="fas fa-chevron-right"></i> Haberler</a></li>
+                        <li><a href="caykurrize.html"><i class="fas fa-chevron-right"></i> Çaykur Rizespor</a></li>
+                        <li><a href="iletisim.html"><i class="fas fa-chevron-right"></i> İletişim</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <div class="social-media">
+                        <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <div class="footer-logo">
+                        <img src="FOTOGRAFLAR/logo.jpg" alt="RizeSpor Haber Logo">
+                    </div>
+                    <div class="footer-copyright">
+                        <p>Copyright © RizeSpor Haber - Tüm Hakları Saklıdır</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Placeholder for contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Handle form submission here
+            alert('Mesajınız gönderildi!');
+        });
+    </script>
+</body>
+</html>
